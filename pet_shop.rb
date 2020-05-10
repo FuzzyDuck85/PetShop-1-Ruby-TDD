@@ -121,9 +121,10 @@ end
 def find_pet_by_name(pet_shop, name)
   for pet in pet_shop[:pets]
     if pet[:name] == name
-      return pet
+      found_you = pet
     end
   end
+  return found_you
 end
 
 # Objective 011
@@ -136,11 +137,20 @@ end
 def find_pet_by_name(pet_shop, name)
   for pet in pet_shop[:pets]
     if pet[:name] == name
-      return pet
+      found_you = pet
     end
   end
-  return nil
+  return found_you
 end
+
+# def find_pet_by_name(pet_shop, name)
+#   for pet in pet_shop[:pets]
+#     if pet[:name] == name
+#       return pet
+#     end
+#   end
+#   return nil
+# end
 
 # Objective 012
 
@@ -219,7 +229,7 @@ def add_pet_to_customer(customer, new_pet)
   return customer_pet_count(customer)
 end
 
-# Optional Objective 001
+# Optional Objective 018
 
 # def test_customer_can_afford_pet__sufficient_funds
 #   customer = @customers[0]
@@ -227,7 +237,15 @@ end
 #   assert_equal(true, can_buy_pet)
 # end
 
-# Optional Objective 002
+def customer_can_afford_pet(customer, new_pet)
+  if customer[:cash] >= new_pet[:price]
+    return true
+  else
+    return false
+  end
+end
+
+# Optional Objective 019
 
 # def test_customer_can_afford_pet__insufficient_funds
 #   customer = @customers[1]
@@ -235,7 +253,15 @@ end
 #   assert_equal(false, can_buy_pet)
 # end
 
-# Optional Objective 003
+def customer_can_afford_pet(customer, new_pet)
+  if customer[:cash] >= new_pet[:price]
+    return true
+  else
+    return false
+  end
+end
+
+# Optional Objective 020
 
 # def test_customer_can_afford_pet__exact_funds
 #   customer = @customers[2]
@@ -243,7 +269,15 @@ end
 #   assert_equal(true, can_buy_pet)
 # end
 
-# Optional Objective 004
+def customer_can_afford_pet(customer, new_pet)
+  if customer[:cash] >= new_pet[:price]
+    return true
+  else
+    return false
+  end
+end
+
+# Optional Objective 021
 
 # def test_sell_pet_to_customer__pet_found
 #   customer = @customers[0]
@@ -257,7 +291,16 @@ end
 #   assert_equal(1900, total_cash(@pet_shop))
 # end
 
-# Optional Objective 005
+def sell_pet_to_customer(hash_name, pet, customer)
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+  return add_pet_to_customer(customer, pet),
+  pet_shop[:admin][:pets_sold] += 1,
+  remove_customer_cash(customer, pet[:price]),
+  add_or_remove_cash(pet_shop, pet[:price])
+end
+
+# Optional Objective 022
 
 # def test_sell_pet_to_customer__pet_not_found
 #   customer = @customers[0]
@@ -271,16 +314,30 @@ end
 #   assert_equal(1000, total_cash(@pet_shop))
 # end
 
-# Optional Objective 006
+# def sell_pet_to_customer(pet_shop, pet, customer)
 
-# def test_sell_pet_to_customer__insufficient_funds
-#   customer = @customers[1]
-#   pet = find_pet_by_name(@pet_shop,"Arthur")
+def sell_pet_to_customer(hash_name, pet, customer)
 
-#   sell_pet_to_customer(@pet_shop, pet, customer)
+  if pet == nil
+  elsif customer_can_afford_pet(customer, pet)
+  return add_pet_to_customer(customer, @pets),
+  increase_pets_sold(hash_name, 1),
+  amount = pet[:price],
+  add_or_remove_cash(hash_name, amount),
+  else
+  end
+end 
 
-#   assert_equal(0, customer_pet_count(customer))
-#   assert_equal(0, pets_sold(@pet_shop))
-#   assert_equal(50, customer_cash(customer))
-#   assert_equal(1000, total_cash(@pet_shop))
-# end
+  # Optional Objective 023
+
+  # def test_sell_pet_to_customer__insufficient_funds
+  #   customer = @customers[1]
+  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+
+  #   sell_pet_to_customer(@pet_shop, pet, customer)
+
+  #   assert_equal(0, customer_pet_count(customer))
+  #   assert_equal(0, pets_sold(@pet_shop))
+  #   assert_equal(50, customer_cash(customer))
+  #   assert_equal(1000, total_cash(@pet_shop))
+  # end

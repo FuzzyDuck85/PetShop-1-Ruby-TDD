@@ -117,7 +117,7 @@ class TestPetShop < Minitest::Test
     assert_equal(0, sold)
   end
 
-# Objective 006
+# # Objective 006
 
   def test_increase_pets_sold
     increase_pets_sold(@pet_shop,2)
@@ -232,9 +232,6 @@ class TestPetShop < Minitest::Test
     assert_equal(true, can_buy_pet)
   end
 
-  # These are 'integration' tests so we want multiple asserts.
-  # If one fails the entire test should fail
-
 # Optional Objective 021
 
   def test_sell_pet_to_customer__pet_found
@@ -265,16 +262,18 @@ class TestPetShop < Minitest::Test
 
 # Optional Objective 023
 
-  # def test_sell_pet_to_customer__insufficient_funds
-  #   customer = @customers[1]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+  def test_sell_pet_to_customer__insufficient_funds
+    customer = @customers[1]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(50, customer_cash(customer))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(50, customer_cash(customer))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
+
+
 
 end
